@@ -1,0 +1,44 @@
+<?php
+/**
+ * @file
+ * Code for the National Central Point Defaults feature.
+ */
+
+include_once('national_central_point_defaults.features.inc');
+
+/**
+ * Implements hook_menu().
+ */
+function national_central_point_defaults_menu() {
+  $items = array();
+
+  $items['access-denied'] = array(
+    'title' => 'Access Denied',
+    'page callback' => 'national_central_point_defaults_access_denied',
+    'access callback' => 'national_central_point_defaults_access',
+  );
+
+  return $items;  
+}
+
+/**
+ * Access callback for /access-denied. Give everyone access.
+ */
+function national_central_point_defaults_access() {
+  return TRUE;  
+}
+
+/**
+ * Callback for access denied page.
+ * 
+ * @todo Run this through a theme function if this prototype is used
+ *  long-term.
+ */
+function national_central_point_defaults_access_denied() {
+  $output = '';
+  
+  $output = "<p>This is an FCTC national central point administered by a Party to the FCTC Illicit Trade Protocol.</p>"
+          . "<p>To request data or access to the national central point's data system, please email some.email@to.be.determined.com.</p>";
+
+  return $output;
+}
